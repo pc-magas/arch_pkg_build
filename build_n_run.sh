@@ -5,7 +5,7 @@ set -euo pipefail
 
 #!/usr/bin/env bash
 
-sudo chown $(whoami) ${PWD}
+sudo chown -R $(whoami) ${PWD}
 
 updpkgsums 
 makepkg -si --noconfirm 
