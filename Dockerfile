@@ -10,6 +10,7 @@ COPY --chown=root:root --chmod=0755 ./build_n_run.sh /bin/build_n_run
 RUN echo '#!/usr/bin/env bash' > /usr/local/bin/entrypoint.sh && \
     echo 'set -e' >> /usr/local/bin/entrypoint.sh && \
     echo '' >> /usr/local/bin/entrypoint.sh && \
+    echo 'echo "Start container"' >> /usr/local/bin/entrypoint.sh && \
     echo 'sudo chown -R builder:builder /home/builder' &&\
     echo 'sudo chmod +w /home/builder' &&\
     echo 'exec "$@"' >> /usr/local/bin/entrypoint.sh && \
