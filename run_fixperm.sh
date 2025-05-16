@@ -4,9 +4,6 @@
 set -euo pipefail
 sudo chown -R $(whoami) ${PWD}
 
-updpkgsums 
-makepkg -si --noconfirm 
-
 if [[ $# -gt 0 ]]; then
     echo "Running post-install command: $*"
     exec "$@"

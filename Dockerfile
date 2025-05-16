@@ -6,6 +6,8 @@ RUN pacman -Syu --noconfirm \
 
 
 COPY --chown=root:root --chmod=0755 ./build_n_run.sh /bin/build_n_run
+COPY --chown=root:root --chmod=0755 ./run_fixperm.sh /bin/run_fixperm
+
 
 RUN echo '#!/usr/bin/env bash' > /usr/local/bin/entrypoint.sh && \
     echo 'set -e' >> /usr/local/bin/entrypoint.sh && \
