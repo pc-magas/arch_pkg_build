@@ -21,13 +21,14 @@ RUN echo '#!/usr/bin/env bash' > /usr/local/bin/entrypoint.sh && \
 
 USER builder
 
+WORKDIR /home/builder
+
 RUN git clone https://aur.archlinux.org/yay-bin.git &&\
     cd yay-bin &&\
     makepkg -si &&\
     rm -rf yay-bin &&\
     yay --version
 
-WORKDIR /home/builder
 VOLUME /home/builder
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
