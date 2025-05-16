@@ -1,0 +1,28 @@
+name: release
+
+on:
+  push:
+    branches:
+      - dev
+      - master
+
+jobs:
+  upload_docker:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Login to Docker Hub
+        if: github.ref == 'refs/heads/master'
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: build and release
+        run: bash .github/build_docker.sh
