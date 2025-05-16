@@ -4,6 +4,11 @@ RUN pacman -Syu --noconfirm \
     && pacman -S --noconfirm base-devel git sudo pacman-contrib\ 
     && useradd -m builder && echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+RUN git clone https://aur.archlinux.org/yay-bin.git &&\
+    cd yay-bin &&\
+    makepkg -si &&\
+    rm -rf yay-bin &&\
+    yay --version
 
 COPY --chown=root:root --chmod=0755 ./build_n_run.sh /bin/build_n_run
 COPY --chown=root:root --chmod=0755 ./run_fixperm.sh /bin/run_fixperm
