@@ -4,7 +4,10 @@
 set -euo pipefail
 sudo chown -R $(whoami) ${PWD}
 
+echo "Update Checksums"
 updpkgsums 
+echo "\n###########################\n"
+echo "Build Package"
 makepkg -si --noconfirm 
 
 if [[ $# -gt 0 ]]; then
